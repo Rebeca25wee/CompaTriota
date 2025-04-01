@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="linea.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <title>CompaTriota - Historia y Cultura Panameña</title>
+    <style>
+        #accessibility-widget {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .accessibility-controls {
+            display: flex;
+            gap: 10px;
+        }
+        .accessibility-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .high-contrast {
+            background-color: black !important;
+            color: white !important;
+        }
+        .high-contrast a {
+            color: yellow !important;
+        }
+        :root {
+            --primary-color: #005eb8;
+            --secondary-color: #e52935;
+            --accent-color: #f2a900;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --gray-color: #f0f0f0;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding: 0;
+        }
+        
+        .navbar-brand span:first-child {
+            color: var(--primary-color);
+        }
+        
+        .navbar-brand span:last-child {
+            color: var(--secondary-color);
+        }
+        
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            padding: 1.3rem 1rem !important;
+            color: var(--dark-color) !important;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: 10px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .nav-link:hover:before, .nav-link.active:before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), #0078e7);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 94, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 94, 184, 0.4);
+            background: linear-gradient(45deg, #0078e7, var(--primary-color));
+        }
+        
+        .dropdown-menu {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
+            padding: 0.8rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('./Img/IMG-20250223-WA0068.jpg'); /* Placeholder image */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 94, 184, 0.9), rgba(229, 41, 53, 0.8));
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+        
+        .hero-buttons .btn {
+            margin: 0 10px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-buttons .btn-outline-light {
+            border-width: 2px;
+        }
+        
+        .hero-buttons .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .hero-scroll {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+        
+        .hero-scroll a {
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Features */
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--dark-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: #777;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: none;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 94, 184, 0.1), rgba(229, 41, 53, 0.1));
+            border-radius: 50%;
+            color: var(--primary-color);
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .feature-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-text {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Counter Section */
+        .counter-section {
+            padding: 100px 0;
+            background: url('/api/placeholder/1920/600') center/cover no-repeat fixed;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 94, 184, 0.9), rgba(229, 41, 53, 0.9));
+            z-index: 0;
+        }
+        
+        .counter-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .counter-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .counter-box::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+        
+        .counter-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .counter-box:hover::before {
+            height: 100%;
+        }
+        
+        .counter-box:hover .counter-number,
+        .counter-box:hover .counter-text {
+            color: white;
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .counter-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+        
+        /* Mission and Vision */
+        .mission-vision-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+            overflow: hidden;
+        }
+        
+        .mission-vision-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            background: white;
+            border: none;
+            height: 100%;
+        }
+        
+        .mission-vision-image {
+            position: relative;
+            overflow: hidden;
+            height: 0;
+            padding-top: 66.67%; /* 2:3 aspect ratio */
+        }
+        
+        .mission-vision-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .mission-vision-card:hover .mission-vision-image img {
+            transform: scale(1.1);
+        }
+        
+        .mission-vision-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            z-index: 1;
+        }
+        
+        .mission-vision-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+        }
+        
+        .mission-vision-content {
+            padding: 30px;
+            position: relative;
+        }
+        
+        .mission-vision-subtitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .mission-vision-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .mission-vision-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-item {
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            background: white;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            float: left;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -15px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            top: 30px;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3;
+            text-align: center;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -45px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -45px;
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .timeline-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* ODS Section */
+        .ods-section {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .ods-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.5s, box-shadow 0.5s;
+            border: none;
+            height: 100%;
+            margin-bottom: 30px;
+        }
+        
+        .ods-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .ods-card-img {
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s;
+        }
+        
+        .ods-card:hover .ods-card-img {
+            transform: scale(1.1);
+        }
+        
+        .ods-card-img-wrapper {
+            overflow: hidden;
+        }
+        
+        .ods-card-body {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .ods-card-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .ods-card-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ods-card-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .ods-card-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+        }
+        
+        .contact-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border: none;
+        }
+        
+        .contact-form-control {
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .contact-form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 94, 184, 0.25);
+        }
+        
+        .contact-form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+        
+        .contact-submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 80px 0 30px;
+            background-color: var(--dark-color);
+            color: white;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-brand {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-brand span:first-child {
+            color: var(--primary-color);
+        }
+        
+        .footer-brand span:last-child {
+            color: var(--secondary-color);
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        .footer-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-social {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .footer-social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-social-icon:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-5px);
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                float: right;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content {
+                float: right;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                content: '';
+                position: absolute;
+                top: 30px;
+                left: -15px;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 10px 15px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .timeline-date {
+                width: 60px;
+                height: 60px;
+                font-size: 0.9rem;
+                left: 0 !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons .btn {
+                margin: 5px;
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature-card,
+            .mission-vision-card,
+            .ods-card {
+                margin-bottom: 30px;
+            }
+            
+            .counter-box {
+                margin-bottom: 30px;
+            }
+            
+            .mission-vision-image {
+                padding-top: 60%;
+            }
+            
+            .timeline-item {
+                margin-bottom: 60px;
+            }
+        }
+        
+        /* Animations */
+        .animate-element {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#inicio">
+                    <span>Compa</span><span>Triota</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#inicio">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#quienes-somos">¿Quiénes Somos?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#mision-vision">Misión y Visión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#ruta">Nuestra Ruta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#ods">ODS</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Más
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="eventos.html"><i class="fas fa-calendar-alt me-2"></i>Eventos</a></li>
+                                <li><a class="dropdown-item" href="nosotros.html"><i class="fas fa-calendar-alt me-2"></i>Nosotros</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-primary" href="#contacto"><i class="fas fa-envelope me-2"></i>Contáctanos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate__animated animate__fadeInDown">Somos <span style="color: #f2a900;">CompaTriota</span></h1>
+                <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">Una comunidad comprometida en fomentar la educación e interés por la historia panameña, surgida del Laboratorio Latinoamericano de Acción Ciudadana.</p>
+                <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#quienes-somos" class="btn btn-primary">Conócenos</a>
+                    <a href="#contacto" class="btn btn-outline-light">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll animate__animated animate__fadeInUp animate__delay-3s">
+            <a href="#quienes-somos"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-5" id="quienes-somos">
+        <div class="container py-5">
+            <div class="section-header">
+                <h2 class="section-title animate-element">¿Quiénes Somos?</h2>
+                <p class="section-subtitle animate-element">CompaTriota es una iniciativa educativa dedicada a promover el conocimiento de la historia y cultura panameña entre los jóvenes.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card animate-element" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="feature-title">Educación Histórica</h3>
+                            <p class="feature-text">Promovemos el conocimiento profundo de la historia panameña mediante metodologías dinámicas e innovadoras que capturan la atención de los jóvenes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-element" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Impacto Comunitario</h3>
+                            <p class="feature-text">Trabajamos con jóvenes de comunidades vulnerables para empoderarlos como agentes de cambio en sus zonas a través del conocimiento histórico.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card animate-element" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <h3 class="feature-title">Identidad Nacional</h3>
+                            <p class="feature-text">Fortalecemos el sentido de pertenencia y orgullo nacional a través del conocimiento cultural e histórico de nuestras raíces panameñas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="counter-overlay"></div>
+        <div class="container counter-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="counter-box" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="counter-number" data-count="20">20</div>
+                        <div class="counter-text">Jóvenes Participantes</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="counter-box" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="counter-number" data-count="4">4</div>
+                        <div class="counter-text">Comunidades Impactadas</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="counter-box" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="counter-number" data-count="2025">2025</div>
+                        <div class="counter-text">Año de Culminación</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission and Vision -->
+    <section class="mission-vision-section" id="mision-vision">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-element">Misión y Visión</h2>
+                <p class="section-subtitle animate-element">Nuestros objetivos y aspiraciones para transformar la educación histórica en Panamá</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="mission-vision-card">
+                        <div class="mission-vision-image">
+                            <img src="./Img/Chicos1erdía.jpeg" alt="Chicos de la fundación espacio creativo y el equipo CompaTriota">
+                            <div class="mission-vision-overlay">
+                                <h3 class="mission-vision-title">Misión</h3>
+                            </div>
+                        </div>
+                        <div class="mission-vision-content">
+                            <h4 class="mission-vision-subtitle">Nuestra Misión</h4>
+                            <p class="mission-vision-text">Educar en Historia de Panamá y su cultura a adolescentes de entre 15-18 años de la Fundación Espacio Creativo, a través de actividades dinámicas, como: exposiciones, plataformas digitales y material didáctico para promover su sentido de pertenencia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="mission-vision-card">
+                        <div class="mission-vision-image">
+                            <img src="./Img/Chicapensando.jpeg" alt="Chica de la fundación pensando">
+                            <div class="mission-vision-overlay">
+                                <h3 class="mission-vision-title">Visión</h3>
+                            </div>
+                        </div>
+                        <div class="mission-vision-content">
+                            <h4 class="mission-vision-subtitle">Nuestra Visión</h4>
+                            <p class="mission-vision-text">Conseguir que los jóvenes panameños realmente conozcan de su historia y se inspiren a generar un cambio dentro de sus comunidades. En los próximos cinco años, lograr la implementación de actividades que promuevan el aprendizaje de la Historia de Panamá con atención a las necesidades de los estudiantes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="ruta">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-element">Nuestra Ruta</h2>
+                <p class="section-subtitle animate-element">El camino que estamos recorriendo para lograr nuestros objetivos</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item clearfix" data-aos="fade-up">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 1: Investigación y Desarrollo</h3>
+                        <p class="timeline-text">Investigación histórica, creación de contenidos y materiales didácticos adaptados a nuestro público objetivo de jóvenes entre 15 y 18 años con una visión innovadora.</p>
+                    </div>
+                    <div class="timeline-date">Fase 1</div>
+                </div>
+                
+                <div class="timeline-item clearfix" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 2: Implementación</h3>
+                        <p class="timeline-text">Puesta en marcha del programa educativo con los jóvenes seleccionados de la Fundación Espacio Creativo en las comunidades objetivo con evaluaciones al iniciar el programa.</p>
+                    </div>
+                    <div class="timeline-date">Fase 2</div>
+                </div>
+                
+                <div class="timeline-item clearfix" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 3: Desarrollo</h3>
+                        <p class="timeline-text">Implementación de actividades dinámicas, visitas a sitios históricos, talleres interactivos y creación de contenido digital por parte de los participantes.</p>
+                    </div>
+                    <div class="timeline-date">Fase 3</div>
+                </div>
+                
+                <div class="timeline-item clearfix" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fase 4: Evaluación y Cierre</h3>
+                        <p class="timeline-text">Evaluación de datos y la celebración de logros con la presentación de obras realizadas por los participantes.</p>
+                    </div>
+                    <div class="timeline-date">Fase 4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ODS Section -->
+    <section class="ods-section" id="ods">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-element">Objetivos de Desarrollo Sostenible</h2>
+                <p class="section-subtitle animate-element">Nuestro proyecto contribuye a los siguientes ODS de la ONU</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6" data-aos="flip-left">
+                    <div class="ods-card">
+                        <div class="ods-card-img-wrapper">
+                            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" class="ods-card-img" alt="Educación de Calidad">
+                        </div>
+                        <div class="ods-card-body">
+                            <h3 class="ods-card-title">ODS 4: Educación de Calidad</h3>
+                            <p class="ods-card-text">Nuestro proyecto promueve la obtención de una educación de calidad centrada en la Historia de Panamá, haciendo accesible el conocimiento histórico a jóvenes de comunidades vulnerables, contribuyendo así a reducir las desigualdades educativas.</p>
+                            <a href="https://www.un.org/sustainabledevelopment/es/education/" class="ods-card-button" target="_blank">Más Información</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="flip-right">
+                    <div class="ods-card">
+                        <div class="ods-card-img-wrapper">
+                            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg" class="ods-card-img" alt="Paz, justicia e instituciones sólidas">
+                        </div>
+                        <div class="ods-card-body">
+                            <h3 class="ods-card-title">ODS 16: Paz, justicia e instituciones sólidas</h3>
+                            <p class="ods-card-text">Trabajamos en promover una sociedad más justa y la eficiencia de las instituciones a través de la educación y el conocimiento de la historia nacional, fomentando una ciudadanía participativa, informada y comprometida con el desarrollo del país.</p>
+                            <a href="https://www.un.org/sustainabledevelopment/es/peace-justice/" class="ods-card-button" target="_blank">Más Información</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title animate-element">Contáctanos</h2>
+                <p class="section-subtitle animate-element">¿Tienes preguntas o quieres ser parte de CompaTriota? ¡Escríbenos!</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <div class="contact-card card">
+                        <div class="card-body p-5">
+                            <form action="https://formsubmit.co/compatriota31@gmail.com" method="POST">
+                                <!-- 👆👆👆 CAMBIA LA DIRECCIÓN DE CORREO ARRIBA 👆👆👆 -->
+                                <!-- Campos ocultos para configuración -->
+                                <input type="hidden" name="_subject" value="Nuevo mensaje de CompaTriota">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
+                                <!-- 👆👆👆 OPCIONAL: CAMBIA ESTA URL POR LA DE TU PÁGINA DE AGRADECIMIENTO 👆👆👆 -->
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <label for="nombre" class="contact-form-label">Nombre</label>
+                                        <input type="text" class="form-control contact-form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <label for="email" class="contact-form-label">Correo Electrónico</label>
+                                        <input type="email" class="form-control contact-form-control" id="email" name="email" placeholder="tu@email.com" required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="asunto" class="contact-form-label">Asunto</label>
+                                    <input type="text" class="form-control contact-form-control" id="asunto" name="asunto" placeholder="Asunto del mensaje" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="mensaje" class="contact-form-label">Mensaje</label>
+                                    <textarea class="form-control contact-form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="contact-submit-btn">Enviar Mensaje</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        #province-selector-container {
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 30px 15px;
+        }
+    
+        #province-title {
+            font-size: 24px;
+            color: #004987;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    
+        #province-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+    
+        .province-btn {
+            width: 60px;
+            height: 60px;
+            background-color: #004987;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    
+        .province-btn:hover {
+            background-color: #D7141A;
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+    
+        #province-fact {
+            background-color: #004987;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+    </style>
+    
+    <div id="province-selector-container">
+        <div id="province-title">
+            ¿De qué provincia eres? Selecciona tu número
+        </div>
+        <div id="province-buttons">
+            <button class="province-btn">1</button>
+            <button class="province-btn">2</button>
+            <button class="province-btn">3</button>
+            <button class="province-btn">4</button>
+            <button class="province-btn">5</button>
+            <button class="province-btn">6</button>
+            <button class="province-btn">7</button>
+            <button class="province-btn">8</button>
+            <button class="province-btn">9</button>
+            <button class="province-btn">10</button>
+        </div>
+        <div id="province-fact">
+            Selecciona un número para descubrir un dato único de esa provincia
+        </div>
+    </div>
+    
+    <script>
+        const provinceFacts = {
+            "1": "🌴 Bocas del Toro: árchipielago en el Mar Caribe descubierto por Cristóbal Colón en 1545.",
+            "2": "🏔️ Chiriquí: Hogar del Volcán Barú, el punto más alto de Panamá con 3,474 metros sobre el nivel del mar con su erupción más recientes siendo hace 400-500 años.",
+            "3": "🌽 Coclé: Conocida como la provincia agrícola, famosa por su producción de arroz y caña de azúcar. Sin dejar atrás su atractivo hacia la minería, teniendo recursos auríferos explotandos desde los tiempos coloniales.",
+            "4": "🚢 Colón: La ciudad fue constituida en 1855 por la Compañía del Ferrocarril en Panamá, incialmente fue llamada por los estadounidensees Aspinwall.",
+            "5": "🌿 Darién: Una de las regiones más biodiversas del mundo, hogar de comunidades indígenas como los Emberá. Es caracterizado por ser una zona muy humeda y lluviosa.",
+            "6": "🏺 Herrera: Importante sitio arqueológico con vestigios de culturas precolombinas. Esta ciudad fue nombrada en honor a Tomás Herrera, lider del movimiento separatista de Panamá hasta 1841.",
+            "7": "🇵🇦 Los Santos: Cuna de la independencia panameña, donde se firmó el acta de independencia de Colombia. Creada en 1850, cuando Panamá se unió voluntariamente a Nueva Granada.",
+            "8": "🌆 Panamá: Centro económico y administrativo del país, donde se ubica la Ciudad de Panamá. Algunos historiadores atribuyen el nombre a el siginificado de abundancia de peces y mariposas, mientras que otros lo atribuyen al árbol local Panamá.",
+            "9": "🌉 Panamá Oeste: Provincia relativamente nueva, creada en 2014 como parte de una reorganización territorial.Una tradición que no se puede olvidar es la confección de muñecos de Año Viejo.",
+            "10": "⚓ Veraguas: Primera provincia fundada por los españoles en el territorio panameño. Es la única provincia bañada por dos océanos."
+        };
+    
+        document.querySelectorAll('.province-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const provinceFact = provinceFacts[this.textContent];
+                document.getElementById('province-fact').textContent = provinceFact;
+            });
+        });
+    </script>
+
+<div class="sección"><h1>Test Compatriota→</h1>
+<a id="Texto1"href="pacman-section.html">Pac-Man!!</a></div>
+
+
+<!-- Sección de Contacto -->
+<div id="contact-section-container"></div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="footer-brand">
+                        <span>Compa</span><span>Triota</span>
+                    </div>
+                    <p class="footer-text">Una comunidad surgida del Laboratorio Latinoamericano de Acción Ciudadana comprometida en fomentar la educación e interés por la historia panameña.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/somoscompatriota/?igsh=MXIwZjZ5MzFtaHg0OQ%3D%3D#" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@somoscompatriota31?_t=ZM-8u5O9j28xaJ&_r=1" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <h3 class="footer-heading">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio"><i class="fas fa-chevron-right me-2"></i>Inicio</a></li>
+                        <li><a href="#quienes-somos"><i class="fas fa-chevron-right me-2"></i>¿Quiénes Somos?</a></li>
+                        <li><a href="#mision-vision"><i class="fas fa-chevron-right me-2"></i>Misión y Visión</a></li>
+                        <li><a href="#ruta"><i class="fas fa-chevron-right me-2"></i>Nuestra Ruta</a></li>
+                        <li><a href="#ods"><i class="fas fa-chevron-right me-2"></i>ODS</a></li>
+                        <li><a href="#contacto"><i class="fas fa-chevron-right me-2"></i>Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <h3 class="footer-heading">Contáctanos</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Fundación Espacio Creativo, Panamá</li>
+                        <li><i class="fas fa-envelope me-2"></i>compatriota31@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h3 class="footer-heading">Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://drive.google.com/drive/folders/1xIilxJcTgR-aFOD9RuAQIrmfCMrzAc-X?usp=sharing"><i class="fas fa-book me-2"></i>Biblioteca</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1XJKckOSFp4UO7nvFXm4stZ9e54vz0S45?usp=drive_link"><i class="fas fa-images me-2"></i>Galería</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 CompaTriota. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-element');
+            const checkPosition = function() {
+                for (let i = 0; i < animateElements.length; i++) {
+                    let element = animateElements[i];
+                    let positionFromTop = element.getBoundingClientRect().top;
+                    
+                    if (positionFromTop - window.innerHeight <= -100) {
+                        element.classList.add('visible');
+                    }
+                }
+            }
+            
+            window.addEventListener('scroll', checkPosition);
+            checkPosition();
+            
+            // Counter animation
+            const counters = document.querySelectorAll('.counter-number');
+            const counterSpeed = 200; // Lower is faster
+            
+            counters.forEach(counter => {
+                const animate = () => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText.replace(/,/g, '');
+                    const increment = target / counterSpeed;
+                    
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(animate, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                }
+                
+                // Only start the animation when the element is in view
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        animate();
+                    }
+                });
+                
+                observer.observe(counter);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(navLink => {
+                            navLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Update active nav link on scroll
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                    
+                    if (navLink.getAttribute('href') === `#${current}`) {
+                        navLink.classList.add('active');
+                    }
+                });
+            });
+        });
+ </script>
+
+<script src="js/accessibility.js"></script>
+</body>
+</html>

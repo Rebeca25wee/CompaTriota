@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <title>CompaTriota - Eventos</title>
+    <style>
+        :root {
+            --primary-color: #005eb8;
+            --secondary-color: #e52935;
+            --accent-color: #f2a900;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --gray-color: #f0f0f0;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            position: relative;
+            padding: 0;
+        }
+        
+        .navbar-brand span:first-child {
+            color: var(--primary-color);
+        }
+        
+        .navbar-brand span:last-child {
+            color: var(--secondary-color);
+        }
+        
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin: 0 5px;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            padding: 1.3rem 1rem !important;
+            color: var(--dark-color) !important;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: 10px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .nav-link:hover:before, .nav-link.active:before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-color), #0078e7);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 94, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 94, 184, 0.4);
+            background: linear-gradient(45deg, #0078e7, var(--primary-color));
+        }
+        
+        .dropdown-menu {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .dropdown-item {
+            padding: 0.8rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        /* Events Hero Section */
+        .events-hero {
+            background: linear-gradient(rgba(0, 94, 184, 0.8), rgba(229, 41, 53, 0.7)), url('https://www.visitpanama.com/wp-content/uploads/2021/05/museo-del-canal-interoceanico-de-panama-1536x1024.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .events-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .events-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+        
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--dark-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: #777;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Event Cards */
+        .event-card {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: none;
+            height: 100%;
+            position: relative;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            z-index: 1;
+        }
+        
+        .event-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        .event-content {
+            padding: 30px;
+        }
+        
+        .event-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .event-description {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .event-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .event-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            color: white;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(0, 94, 184, 0.9), rgba(229, 41, 53, 0.8)), url('https://macpanama.org/wp-content/uploads/2020/05/mac-panama-1024x683.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .cta-text {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 80px 0 30px;
+            background-color: var(--dark-color);
+            color: white;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-brand {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-brand span:first-child {
+            color: var(--primary-color);
+        }
+        
+        .footer-brand span:last-child {
+            color: var(--secondary-color);
+        }
+        
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        .footer-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-social {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .footer-social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .footer-social-icon:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-5px);
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .events-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .events-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .events-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .event-card {
+                margin-bottom: 30px;
+            }
+            
+            .cta-title {
+                font-size: 2.5rem;
+            }
+            
+            .cta-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <span>Compa</span><span>Triota</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#quienes-somos">¿Quiénes Somos?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#mision-vision">Misión y Visión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#ruta">Nuestra Ruta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="eventos.html">Eventos</a>
+                        </li>
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-primary" href="index.html#contacto"><i class="fas fa-envelope me-2"></i>Contáctanos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="events-hero">
+        <div class="container">
+            <h1 class="animate__animated animate__fadeInDown">Eventos CompaTriota</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">Descubre nuestras actividades diseñadas para explorar y celebrar la historia y cultura panameña</p>
+        </div>
+    </section>
+
+    <!-- Main Events -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="section-header">
+                <h2 class="section-title" data-aos="fade-up">Nuestras Actividades</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Conoce los eventos que estamos organizando para promover el conocimiento de la historia de Panamá</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="./Img/ClaseAbi.jpg" alt="Programa de Clases, clase de Abigail B.">
+                            <div class="event-tag">Educativo</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">Programa de Clases</h3>
+                            <p class="event-description">Nuestro programa educativo está diseñado para jóvenes de entre 15 y 18 años y abarca los aspectos más importantes de la historia panameña. A través de metodologías dinámicas y participativas, los estudiantes conocerán desde los pueblos originarios hasta los acontecimientos que han definido la Panamá moderna.</p>
+                            <a href="#" class="event-btn">Próximamente</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="./Img/Conversatorio.jpeg" alt="Conversatorio con imagenes influyentes en la historia de Panamá y jovenes">
+                            <div class="event-tag">Diálogo</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">Conversatorios</h3>
+                            <p class="event-description">Espacios de diálogo y reflexión sobre temas relevantes de nuestra historia y cultura nacional. Estos eventos reúnen a expertos, académicos y miembros de la comunidad para debatir sobre la identidad panameña y los desafíos actuales desde una perspectiva histórica. Las fechas y detalles se anunciarán próximamente.</p>
+                            <a href="#" class="event-btn">Próximamente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="./Img/MuseodelCanal.jpeg" alt="Chicos en el museo del Canal">
+                            <div class="event-tag">Experiencial</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">Giras Educativas</h3>
+                            <p class="event-description">Visitas guiadas a sitios históricos de Panamá que permiten a los jóvenes conocer de primera mano los lugares emblemáticos de nuestra historia nacional. Estas experiencias educativas fortalecen el aprendizaje teórico con vivencias prácticas que promueven un mayor sentido de pertenencia e identidad nacional.</p>
+                            <a href="#" class="event-btn">Próximamente</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="event-card">
+                        <div class="event-image">
+                            <img src="./Img/Pintura1.0.jpeg" alt="Chica pintando para la exposición en el MAC.">
+                            <div class="event-tag">Cultural</div>
+                        </div>
+                        <div class="event-content">
+                            <h3 class="event-title">Exposiciones</h3>
+                            <p class="event-description">Muestras artísticas y culturales que reflejan la interpretación de la historia panameña por parte de los jóvenes participantes en nuestros programas. Estas exposiciones representan la culminación del proceso educativo y demuestran cómo el conocimiento histórico puede traducirse en expresiones creativas y significativas.</p>
+                            <a href="#" class="event-btn">Próximamente</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title" data-aos="fade-up">¿Quieres participar en nuestros eventos?</h2>
+            <p class="cta-text" data-aos="fade-up" data-aos-delay="100">Únete a nuestra comunidad y forma parte de esta experiencia educativa única donde exploramos y celebramos la historia y cultura panameña.</p>
+            <a href="index.html#contacto" class="cta-btn" data-aos="fade-up" data-aos-delay="200">Contáctanos Ahora</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="footer-brand">
+                        <span>Compa</span><span>Triota</span>
+                    </div>
+                    <p class="footer-text">Una comunidad surgida del Laboratorio Latinoamericano de Acción Ciudadana comprometida en fomentar la educación e interés por la historia panameña.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/somoscompatriota/?igsh=MXIwZjZ5MzFtaHg0OQ%3D%3D#" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@somoscompatriota31?_t=ZM-8u5O9j28xaJ&_r=1" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <h3 class="footer-heading">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right me-2"></i>Inicio</a></li>
+                        <li><a href="index.html#quienes-somos"><i class="fas fa-chevron-right me-2"></i>¿Quiénes Somos?</a></li>
+                        <li><a href="index.html#mision-vision"><i class="fas fa-chevron-right me-2"></i>Misión y Visión</a></li>
+                        <li><a href="index.html#ruta"><i class="fas fa-chevron-right me-2"></i>Nuestra Ruta</a></li>
+                        <li><a href="eventos.html"><i class="fas fa-chevron-right me-2"></i>Eventos</a></li>
+                        <li><a href="index.html#contacto"><i class="fas fa-chevron-right me-2"></i>Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                    <h3 class="footer-heading">Contáctanos</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>Fundación Espacio Creativo, Panamá</li>
+                        <li><i class="fas fa-envelope me-2"></i>compatriota31@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h3 class="footer-heading">Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://drive.google.com/drive/folders/1xIilxJcTgR-aFOD9RuAQIrmfCMrzAc-X?usp=sharing"><i class="fas fa-book me-2"></i>Biblioteca</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1XJKckOSFp4UO7nvFXm4stZ9e54vz0S45?usp=drive_link"><i class="fas fa-images me-2"></i>Galería</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 CompaTriota. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+    <script src="js/accessibility.js"></script>
+</body>
+</html>

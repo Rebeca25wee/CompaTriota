@@ -1,0 +1,91 @@
+/* Animación de Pac-Man */
+#pacman-animation-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.pacman {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.pacman-mouth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.mouth-top, .mouth-bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: black;
+}
+
+.mouth-top {
+    top: 0;
+    left: 0;
+    transform-origin: bottom;
+    transform: rotate(45deg);
+}
+
+.mouth-bottom {
+    bottom: 0;
+    left: 0;
+    transform-origin: top;
+    transform: rotate(-45deg);
+}
+
+.food {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes chomp {
+    0%, 100% { clip-path: polygon(100% 74%, 44% 48%, 100% 21%); }
+    50% { clip-path: polygon(100% 50%, 44% 48%, 100% 50%); }
+}
+
+.animate-chomp {
+    animation: chomp 0.3s linear infinite;
+}
+
+@keyframes food-move {
+    0% { 
+        left: 100%; 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% { 
+        left: 50%; 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% { 
+        left: 0%; 
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
+
+.food-animation {
+    animation: food-move 1.5s ease-in-out forwards;
+}

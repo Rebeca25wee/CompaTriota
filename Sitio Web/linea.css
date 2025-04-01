@@ -1,0 +1,26 @@
+.sección {
+    display: flex;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #291a97, #d73e3e);
+    color: rgb(227, 224, 224);
+    border: 100%;
+    padding: 15px 15px 15px 15px;
+    font-size: 1.5rem;
+    border-radius: 0px;
+    font-family:sans-serif;
+    font-weight: bolder;
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#Texto1 {
+    display: flex;
+    justify-content: center;
+    color: rgb(227, 224, 224);
+    padding-left: 3px;
+    font-size: 2rem;
+    border-radius: 0px;
+    font-family:sans-serif;
+    font-weight: bolder;
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
